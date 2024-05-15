@@ -16,6 +16,6 @@ namespace Code.Core.Models
         
         private List<TimeSpan> _laps = new List<TimeSpan>();
         public IReadOnlyList<TimeSpan> Laps => _laps;
-        public TimeSpan StartTime;
+        public float StartTime;
     }
 }

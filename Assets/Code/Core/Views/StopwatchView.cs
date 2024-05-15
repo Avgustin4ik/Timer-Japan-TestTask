@@ -6,6 +6,7 @@ namespace Code.Core.Views
     using TMPro;
     using UniRx;
     using UnityEngine;
+    using Zenject;
 
     public class StopwatchView : UiView<StopwatchModel>
     {
@@ -16,20 +17,50 @@ namespace Code.Core.Views
         //todo: пауза таймера
         //todo: возобновление таймера
         //todo: сброс таймера
+        
+        private IDisposable _timerRx;
+        [Inject]
         protected override void Initialize(StopwatchModel model)
         {
-            model.Time.Subscribe(currentTimeSpan => SetTime(currentTimeSpan - model.StartTime)).AddTo(this);
-            model.Run.Subscribe(_ => model.StartTime = DateTime.Now.TimeOfDay).AddTo(this);
-            model.Pause.Subscribe(_ => model.Time.Value = DateTime.Now.TimeOfDay - model.StartTime).AddTo(this);
-            // model.Reset.Subscribe(_ => model.Time.Value = TimeSpan.Zero).AddTo(this);
+            model.Time.Subscribe(x=>DisplayTime(x)).AddTo(this);
+            model.Run.Subscribe(_=>Run()).AddTo(this);
+            model.Pause.Subscribe(_ =>Pause()).AddTo(this);
+            model.Reset.Subscribe(_ => Reset()).AddTo(this);
             // model.Lap.Subscribe(_ => model.Laps.Add(DateTime.Now.TimeOfDay - model.StartTime)).AddTo(this);
             
             base.Initialize(model);
         }
-        
-        private void SetTime(TimeSpan time)
+
+        private void Pause()
         {
-            timeText.text = time.ToString(@"hh\:mm\:ss");
+            Stop();
+            
+        }
+
+        private void Reset()
+        {
+            Stop();
+            Model.Time.Value = TimeSpan.Zero;
+        }
+
+        private void Stop()
+        {
+            _timerRx.Dispose();
+        }
+
+        private void DisplayTime(TimeSpan timeSpan)
+        {
+            timeText.text = timeSpan.ToString(@"hh\:mm\:ss\,fff");
+        }
+
+        private void Run()
+        {
+            Model.StartTime = Time.time;
+            _timerRx = Observable.EveryUpdate().Subscribe(_ =>
+            {
+                var time = Time.time - Model.StartTime;
+                Model.Time.Value = TimeSpan.FromSeconds(time);
+            });
         }
     }
 }
