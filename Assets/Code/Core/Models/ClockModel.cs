@@ -4,7 +4,7 @@ namespace Code.Core.Models
     using Code.Core.Abstract;
     using UniRx;
 
-    public class ClockModel : IModel<ClockModel>
+    public class ClockModel : IModel
     {
         public IReactiveProperty<TimeSpan> Time = new ReactiveProperty<TimeSpan>();
     }

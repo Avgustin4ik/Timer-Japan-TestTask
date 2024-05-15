@@ -1,6 +1,6 @@
 namespace Code.Core.Abstract
 {
-    public interface IModel<T>
+    public interface IModel
     {
         
     }

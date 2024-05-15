@@ -19,6 +19,7 @@ namespace Code.Core.Views
         //todo: сброс таймера
         
         private IDisposable _timerRx;
+        
         [Inject]
         protected override void Initialize(StopwatchModel model)
         {

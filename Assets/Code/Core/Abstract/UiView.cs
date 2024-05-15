@@ -4,14 +4,9 @@ namespace Code.Core.Abstract
     using UnityEngine;
     using Views;
 
-    public class UiView<TModel> : MonoBehaviour, IModel<TModel>
+    public class UiView<TModel> : MonoBehaviour where TModel : IModel
     {
         public TModel Model { get; private set; }
-
-        private void Awake()
-        {
-            Initialize(Model);
-        }
 
         protected virtual void Initialize(TModel model)
         {

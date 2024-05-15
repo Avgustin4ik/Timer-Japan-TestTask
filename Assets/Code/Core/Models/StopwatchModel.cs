@@ -5,12 +5,11 @@ namespace Code.Core.Models
     using Code.Core.Abstract;
     using UniRx;
 
-    public class StopwatchModel : IModel<StopwatchModel>
+    public class StopwatchModel : IModel
     {
         public IReactiveProperty<TimeSpan> Time = new ReactiveProperty<TimeSpan>();
         public IReactiveCommand<bool> Run = new ReactiveCommand<bool>();
         public IReactiveCommand<bool> Pause = new ReactiveCommand<bool>();
-        public IReactiveCommand<bool> Stop = new ReactiveCommand<bool>();
         public IReactiveCommand<bool> Reset = new ReactiveCommand<bool>();
         public IReactiveCommand<bool> Lap = new ReactiveCommand<bool>();
         

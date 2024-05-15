@@ -17,22 +17,17 @@ namespace Code.Core.Views
         [Inject]
         protected override void Initialize(StopwatchScreenModel model)
         {
-            // startButton.onClick.AsObservable().Take(1).Subscribe(x => RunStopwatch());
-            // pauseButton.onClick.AsObservable().Subscribe(x => model.Pause.Execute(true));
-            // resetButton.onClick.AsObservable().Subscribe(x => model.Reset.Execute(true));
-            // lapButton.onClick.AsObservable().Subscribe(x => model.Lap.Execute(true));
+            startButton.onClick.AsObservable().Subscribe(x => RunStopwatch());
+            pauseButton.onClick.AsObservable().Subscribe(x => PauseStopwatch());
+            resetButton.onClick.AsObservable().Subscribe(x => ResetStopwatch());
+            lapButton.onClick.AsObservable().Subscribe(x => LapStopwatch());
             
-            
-            // model.Run.Subscribe(_=>RunStopwatch()).AddTo(this);
-            // model.Pause.Subscribe(_=>PauseStopwatch()).AddTo(this);
-            // model.Reset.Subscribe(_=>ResetStopwatch()).AddTo(this);
-            // model.Lap.Subscribe(_=>LapStopwatch()).AddTo(this);
             base.Initialize(model);
         }
 
         private void RunStopwatch()
         {
-            Debug.Log("RunStopwatch");
+            stopwatchView.Model.Run.Execute(true);
             startButton.gameObject.SetActive(false);
             pauseButton.gameObject.SetActive(true);
             resetButton.gameObject.SetActive(false);
@@ -41,6 +36,7 @@ namespace Code.Core.Views
         
         private void PauseStopwatch()
         {
+            stopwatchView.Model.Pause.Execute(true);
             startButton.gameObject.SetActive(true);
             pauseButton.gameObject.SetActive(false);
             resetButton.gameObject.SetActive(true);
@@ -49,14 +45,16 @@ namespace Code.Core.Views
         
         private void ResetStopwatch()
         {
+            stopwatchView.Model.Reset.Execute(true);
             startButton.gameObject.SetActive(true);
             pauseButton.gameObject.SetActive(false);
-            resetButton.gameObject.SetActive(false);
-            lapButton.gameObject.SetActive(true);
+            resetButton.gameObject.SetActive(true);
+            lapButton.gameObject.SetActive(false);
         }
         
         private void LapStopwatch()
         {
+            stopwatchView.Model.Lap.Execute(true);
             throw new NotImplementedException("LapStopwatch not implemented yet!");
         }
     }
