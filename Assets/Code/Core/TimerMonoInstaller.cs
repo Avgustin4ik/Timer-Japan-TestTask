@@ -11,12 +11,11 @@ namespace Code.Core
         public override void InstallBindings()
         {
             //todo replace as single
-            Container.Bind<TimerModel>().AsTransient().NonLazy();
-            Container.Bind<SetterTimerModel>().AsSingle();
+            // Container.Bind<SetterTimerModel>().AsSingle();
             Container.Bind<Views.StopwatchScreenModel>().AsSingle().NonLazy();
             Container.Bind<Models.StopwatchModel>().AsTransient().Lazy();
             Container.Bind<Models.ClockModel>().AsSingle();
-
+            Container.Bind<TimerScreenModel>().AsSingle();
         }
     }
 }

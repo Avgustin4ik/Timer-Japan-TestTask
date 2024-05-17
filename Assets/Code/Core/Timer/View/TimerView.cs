@@ -5,16 +5,16 @@ namespace Code.Core.Views
     using Timer.Model;
     using TMPro;
     using UniRx;
+    using UnityEngine;
     using UnityEngine.UI;
     using Zenject;
 
     public class TimerView : UiView<TimerModel>
     {
-        public TextMeshProUGUI Time;
-        public Button Start;
-        public Button Pause;
-        public Button Cancel;
-        public SetterTimerView SetterTimer;
+        [SerializeField] private TextMeshProUGUI Time;
+        [SerializeField] private Button Start;
+        [SerializeField] private Button Pause;
+        [SerializeField] private Button Cancel;
         
         [Inject]
         protected override void Initialize(TimerModel model)

@@ -11,6 +11,6 @@ namespace Code.Core.Timer.Model
         public IReactiveCommand<bool> Run = new ReactiveCommand<bool>();
         public IReactiveCommand<bool> Pause = new ReactiveCommand<bool>();
         public IReactiveCommand<bool> Reset = new ReactiveCommand<bool>();
-        public bool IsClearStart { get; set; }
+        // public bool IsClearStart { get; set; }
     }
 }

@@ -6,11 +6,20 @@ namespace Code.Core.Abstract
 
     public class UiView<TModel> : MonoBehaviour where TModel : IModel
     {
+        protected CanvasGroup canvasGroup;
         public TModel Model { get; private set; }
 
         protected virtual void Initialize(TModel model)
         {
             Model = model;
+            if (gameObject.TryGetComponent(typeof(CanvasGroup), out var canvas))
+            {
+                canvasGroup = (CanvasGroup)canvas;
+            }
+            else
+            {
+                canvasGroup = gameObject.AddComponent<CanvasGroup>();
+            }
         }
         
         public virtual void Dispose()
@@ -18,14 +27,12 @@ namespace Code.Core.Abstract
             
         }
         
-        public virtual void Show()
-        {
-            gameObject.SetActive(true);
-        }
         
-        public virtual void Hide()
+        public virtual void Display(bool value)
         {
-            gameObject.SetActive(false);
+            canvasGroup.alpha = value ? 1 : 0;
+            canvasGroup.blocksRaycasts = value;
+            canvasGroup.interactable = value;
         }
         
         public virtual void Destroy()
