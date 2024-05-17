@@ -2,7 +2,6 @@ namespace Code.Core
 {
     using Abstract;
     using Models;
-    using Timer.Model;
     using Views;
     using Zenject;
 
@@ -11,11 +10,12 @@ namespace Code.Core
         public override void InstallBindings()
         {
             //todo replace as single
-            // Container.Bind<SetterTimerModel>().AsSingle();
+            Container.Bind<SetterTimerModel>().AsSingle();
             Container.Bind<Views.StopwatchScreenModel>().AsSingle().NonLazy();
             Container.Bind<Models.StopwatchModel>().AsTransient().Lazy();
             Container.Bind<Models.ClockModel>().AsSingle();
             Container.Bind<TimerScreenModel>().AsSingle();
+            Container.Bind<TimerModel>().AsSingle();
         }
     }
 }

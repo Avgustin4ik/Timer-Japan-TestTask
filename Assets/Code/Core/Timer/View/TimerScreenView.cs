@@ -11,18 +11,25 @@ namespace Code.Core.Views
     {
         [SerializeField] private Button setTimerButton;
         [SerializeField] private SetterTimerView setter;
-        // [SerializeField] private TimerView timer;
+        [SerializeField] private TimerView timer;
         [Inject]
         protected override void Initialize(TimerScreenModel model)
         {
-            setter.Display(false);
-            setTimerButton.gameObject.SetActive(true);
+            InitialState();
             
             setTimerButton.onClick.AddListener(() => ShowSetter());
 
             setter.Model.Start.Subscribe(StartTimer).AddTo(this);
             setter.Model.Cancel.Subscribe(_ =>Cancel()).AddTo(this);
+
             base.Initialize(model);
+        }
+
+        private void InitialState()
+        {
+            setter.Display(false);
+            setTimerButton.gameObject.SetActive(true);
+            timer.Display(false);
         }
 
         private void ShowSetter()
@@ -37,10 +44,12 @@ namespace Code.Core.Views
             setTimerButton.gameObject.SetActive(true);
         }
 
-        private void StartTimer(TimeSpan timeSpan)
+        private void StartTimer(TimeSpan from)
         {
             setter.Display(false);
-            throw new NotImplementedException();
+            timer.Display(true);
+            timer.Model.ElapsedTime = (float)from.TotalSeconds;
+            timer.Model.Run.Execute(true);
         }
     }
 

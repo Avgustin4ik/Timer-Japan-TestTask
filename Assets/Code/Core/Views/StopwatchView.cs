@@ -62,6 +62,7 @@ namespace Code.Core.Views
 
         private void Run()
         {
+            //todo move to model
             if(Model.IsClearStart)
                 Model.StartTime = Time.time;
             else
