@@ -11,12 +11,7 @@ namespace Code.Core.Views
     public class StopwatchView : UiView<StopwatchModel>
     {
         [SerializeField] private TextMeshProUGUI timeText;
-        // [SerializeField] private StopwatchLapView lapView;
-        //todo: запуск таймера
-        //todo: отображение таймера в формате hh:mm:ss
-        //todo: пауза таймера
-        //todo: возобновление таймера
-        //todo: сброс таймера
+        [SerializeField] private LapTimeView lapView;
         
         private IDisposable _timerRx;
         
@@ -27,21 +22,32 @@ namespace Code.Core.Views
             model.Run.Subscribe(_=>Run()).AddTo(this);
             model.Pause.Subscribe(_ =>Pause()).AddTo(this);
             model.Reset.Subscribe(_ => Reset()).AddTo(this);
-            // model.Lap.Subscribe(_ => model.Laps.Add(DateTime.Now.TimeOfDay - model.StartTime)).AddTo(this);
+            model.Lap.Subscribe(_ => Lap()).AddTo(this);
             
             base.Initialize(model);
         }
 
+        private void Lap()
+        {
+            throw new NotImplementedException("LapStopwatch not implemented yet!");
+            Model.Laps.Add(new LapTime
+            {
+                Global = Time.time - Model.StartTime,
+                Difference = Time.time - Model.StartTime - Model.PauseDuration
+            });
+        }
+
         private void Pause()
         {
+            Model.IsClearStart = false;
+            Model.LastPauseTime = Time.time;
             Stop();
-            
         }
 
         private void Reset()
         {
+            Model.ResetValues();
             Stop();
-            Model.Time.Value = TimeSpan.Zero;
         }
 
         private void Stop()
@@ -56,10 +62,13 @@ namespace Code.Core.Views
 
         private void Run()
         {
-            Model.StartTime = Time.time;
+            if(Model.IsClearStart)
+                Model.StartTime = Time.time;
+            else
+                Model.PauseDuration += Time.time - Model.LastPauseTime;
             _timerRx = Observable.EveryUpdate().Subscribe(_ =>
             {
-                var time = Time.time - Model.StartTime;
+                var time = Time.time - Model.StartTime - Model.PauseDuration;
                 Model.Time.Value = TimeSpan.FromSeconds(time);
             });
         }
