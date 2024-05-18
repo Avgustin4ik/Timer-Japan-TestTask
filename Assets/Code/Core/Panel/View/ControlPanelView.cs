@@ -1,5 +1,6 @@
 namespace Code.Core.Panel.View
 {
+    using System;
     using Abstract;
     using Clock;
     using UniRx;
@@ -8,54 +9,41 @@ namespace Code.Core.Panel.View
     using Views;
     using Zenject;
 
+    [Serializable]
+    public struct PairButtonScreen
+    {
+        public Button Button;
+        public ScreenView Screen;
+    }
     public class ControlPanelView : UiView<ControlPanelModel>
     {
-        [Header("Buttons")]
-        [SerializeField] private Button ClockButton;
-        [SerializeField] private Button TimerButton;
-        [SerializeField] private Button AlarmButton;
-        
-        [Header("Screens")]
-        [SerializeField] private ClockScreenView ClockScreen;
-        [SerializeField] private TimerScreenView TimerScreen;
-        [SerializeField] private StopwatchScreenView AlarmScreen;
-        
+        [SerializeField] private PairButtonScreen[] PairButtonScreens;
+        [SerializeField] private ScreenView mainScreen;
         public void InitialState()
         {
-            ClockScreen.Display(true);
-            TimerScreen.Display(false);
-            AlarmScreen.Display(false);
+            DisplayScreen(mainScreen);
         }
         [Inject]
         protected override void Initialize(ControlPanelModel model)
         {
-            ClockButton.onClick.AsObservable().Subscribe(x => ShowClockScreen());
-            TimerButton.onClick.AsObservable().Subscribe(x => ShowTimerScreen());
-            AlarmButton.onClick.AsObservable().Subscribe(x => ShowAlarmScreen());
-            
+            foreach (var pairButtonScreen in PairButtonScreens)
+            {
+                pairButtonScreen.Button.OnClickAsObservable().Subscribe(x=>DisplayScreen(pairButtonScreen.Screen));
+            }
             base.Initialize(model);
-            
         }
 
-        private void ShowClockScreen()
+        private void Awake()
         {
-            ClockScreen.Display(true);
-            TimerScreen.Display(false);
-            AlarmScreen.Display(false);
+            InitialState();
         }
-        
-        private void ShowTimerScreen()
+
+        private void DisplayScreen(ScreenView screen)
         {
-            ClockScreen.Display(false);
-            TimerScreen.Display(true);
-            AlarmScreen.Display(false);
-        }
-        
-        private void ShowAlarmScreen()
-        {
-            ClockScreen.Display(false);
-            TimerScreen.Display(false);
-            AlarmScreen.Display(true);
+            foreach (var pairButtonScreen in PairButtonScreens)
+            {
+                pairButtonScreen.Screen.Display(pairButtonScreen.Screen == screen);
+            }
         }
     }
 }

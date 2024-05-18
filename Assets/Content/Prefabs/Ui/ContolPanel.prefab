@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7267403723445418896}
   - component: {fileID: 4741643159121136480}
   - component: {fileID: 6905902341490503713}
+  - component: {fileID: 1895137710978424574}
   m_Layer: 5
   m_Name: ContolPanel
   m_TagString: Untagged
@@ -87,6 +88,31 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &1895137710978424574
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2665686011220582115}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cef770b54eb4382a90800da067e398a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PairButtonScreens:
+  - Button: {fileID: 2668747839758183752}
+    Screen: {fileID: 0}
+  - Button: {fileID: 2771096756160554167}
+    Screen: {fileID: 0}
+  - Button: {fileID: 8535766414423092836}
+    Screen: {fileID: 0}
+  ClockButton: {fileID: 2668747839758183752}
+  TimerButton: {fileID: 2771096756160554167}
+  AlarmButton: {fileID: 8535766414423092836}
+  ClockScreen: {fileID: 0}
+  TimerScreen: {fileID: 0}
+  AlarmScreen: {fileID: 0}
 --- !u!1001 &117767688340025905
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -97,7 +123,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1515635964519238247, guid: 31a19bd2a9949d4409982f8cacf0ae22, type: 3}
       propertyPath: m_Name
-      value: Button (1)
+      value: Button Timer
       objectReference: {fileID: 0}
     - target: {fileID: 5548932433372823700, guid: 31a19bd2a9949d4409982f8cacf0ae22, type: 3}
       propertyPath: m_Sprite
@@ -196,6 +222,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 31a19bd2a9949d4409982f8cacf0ae22, type: 3}
+--- !u!114 &2771096756160554167 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2870636602859280006, guid: 31a19bd2a9949d4409982f8cacf0ae22, type: 3}
+  m_PrefabInstance: {fileID: 117767688340025905}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &7731387172615063355 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7703691648655242506, guid: 31a19bd2a9949d4409982f8cacf0ae22, type: 3}
@@ -211,7 +248,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1515635964519238247, guid: 31a19bd2a9949d4409982f8cacf0ae22, type: 3}
       propertyPath: m_Name
-      value: Button
+      value: Button Clock
       objectReference: {fileID: 0}
     - target: {fileID: 7703691648655242506, guid: 31a19bd2a9949d4409982f8cacf0ae22, type: 3}
       propertyPath: m_Pivot.x
@@ -306,6 +343,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 31a19bd2a9949d4409982f8cacf0ae22, type: 3}
+--- !u!114 &2668747839758183752 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2870636602859280006, guid: 31a19bd2a9949d4409982f8cacf0ae22, type: 3}
+  m_PrefabInstance: {fileID: 207096050413599694}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &7509403282196188868 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7703691648655242506, guid: 31a19bd2a9949d4409982f8cacf0ae22, type: 3}
@@ -321,7 +369,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1515635964519238247, guid: 31a19bd2a9949d4409982f8cacf0ae22, type: 3}
       propertyPath: m_Name
-      value: Button (2)
+      value: Button Stopwatch
       objectReference: {fileID: 0}
     - target: {fileID: 5548932433372823700, guid: 31a19bd2a9949d4409982f8cacf0ae22, type: 3}
       propertyPath: m_Sprite
@@ -425,3 +473,14 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 7703691648655242506, guid: 31a19bd2a9949d4409982f8cacf0ae22, type: 3}
   m_PrefabInstance: {fileID: 5882737487508191458}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8535766414423092836 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2870636602859280006, guid: 31a19bd2a9949d4409982f8cacf0ae22, type: 3}
+  m_PrefabInstance: {fileID: 5882737487508191458}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

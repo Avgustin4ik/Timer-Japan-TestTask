@@ -2,14 +2,14 @@ namespace Code.Core.Clock
 {
     using Abstract;
     using Models;
+    using Panel.View;
     using UnityEngine;
     using Zenject;
 
-    public class ClockScreenView : UiView<ClockScreenModel>
+    public class ClockScreenView : ScreenView
     {
-        [SerializeField] private ClockModel clock;
         [Inject]
-        protected override void Initialize(ClockScreenModel model)
+        protected override void Initialize(ScreenModel model)
         {
             base.Initialize(model);
         }

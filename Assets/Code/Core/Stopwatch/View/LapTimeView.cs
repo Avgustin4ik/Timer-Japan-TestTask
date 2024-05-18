@@ -12,7 +12,7 @@ namespace Code.Core.Views
     {
         public TextMeshProUGUI Index;
         public TextMeshProUGUI Global;
-        // public TextMeshProUGUI Difference;
+        public TextMeshProUGUI Difference;
 
         [Inject]
         protected override void Initialize(LapTimeModel model)
@@ -29,6 +29,7 @@ namespace Code.Core.Views
         {
             Index.text = "# " + x.Index;
             Global.text = TimeSpan.FromSeconds(x.Global).ToString(@"hh\:mm\:ss\,fff");
+            Difference.text = TimeSpan.FromSeconds(x.Difference).ToString(@"hh\:mm\:ss\,fff");
         }
 
         public class Factory : PlaceholderFactory<LapTimeView>

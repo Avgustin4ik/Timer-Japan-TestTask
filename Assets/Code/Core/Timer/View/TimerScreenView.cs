@@ -2,31 +2,32 @@ namespace Code.Core.Views
 {
     using System;
     using Abstract;
+    using Panel.View;
     using UniRx;
     using UnityEngine;
     using UnityEngine.UI;
     using Zenject;
 
-    public class TimerScreenView : UiView<TimerScreenModel>
+    public class TimerScreenView : ScreenView
     {
         [SerializeField] private Button setTimerButton;
         [SerializeField] private SetterTimerView setter;
         [SerializeField] private TimerView timer;
 
         [Inject]
-        protected override void Initialize(TimerScreenModel model)
+        protected override void Initialize(ScreenModel model)
         {
             InitialState();
             
             setTimerButton.onClick.AddListener(() => ShowSetter());
-
+        
             setter.Model.Start.Subscribe(StartTimer).AddTo(this);
             setter.Model.Cancel.Subscribe(_ =>Cancel()).AddTo(this);
             timer.Model.Reset.Subscribe(_ => InitialState()).AddTo(this);
-
+        
             base.Initialize(model);
         }
-
+        
         private void InitialState()
         {
             setter.Display(false);
@@ -53,10 +54,5 @@ namespace Code.Core.Views
             timer.Model.ElapsedTime = (float)from.TotalSeconds;
             timer.Model.Run.Execute(true);
         }
-    }
-
-    public class TimerScreenModel : IModel
-    {
-        
     }
 }

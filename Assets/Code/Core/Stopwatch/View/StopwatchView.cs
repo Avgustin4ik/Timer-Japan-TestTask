@@ -89,7 +89,7 @@ namespace Code.Core.Views
             {
                 Index = Model.Laps.Count + 1,
                 Global = (float)Model.Time.Value.TotalSeconds,
-                Difference = Model.Laps.Count > 1 ? Time.time - Model.Laps[^1].Global : 0f
+                Difference = Model.Laps.Count > 0 ? Time.time - Model.Laps[^1].Global : 0f
             });
         }
     }

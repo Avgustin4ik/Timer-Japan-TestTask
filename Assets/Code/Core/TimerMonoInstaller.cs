@@ -13,16 +13,17 @@ namespace Code.Core
         public override void InstallBindings()
         {
             //todo replace as single
+            Container.Bind<ScreenModel>().AsTransient().Lazy();
+            
+            
             Container.Bind<SetterTimerModel>().AsSingle();
-            Container.Bind<Views.StopwatchScreenModel>().AsSingle().NonLazy();
-            Container.Bind<Models.StopwatchModel>().AsTransient().Lazy();
+            Container.Bind<Models.StopwatchModel>().AsSingle();
             Container.Bind<Models.ClockModel>().AsSingle();
-            Container.Bind<TimerScreenModel>().AsSingle();
             Container.Bind<TimerModel>().AsSingle();
-            Container.Bind<ClockScreenModel>().AsSingle();
             Container.Bind<ControlPanelModel>().AsSingle();
-            Container.Bind<LapTimeModel>().AsTransient();
+            Container.Bind<LapTimeModel>().AsTransient().Lazy();
             Container.BindFactory<LapTimeView, LapTimeView.Factory>().FromComponentInNewPrefab(lapTimeViewPrefab);
         }
+        
     }
 }

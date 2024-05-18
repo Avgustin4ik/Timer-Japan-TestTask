@@ -3,12 +3,12 @@ namespace Code.Core.Abstract
     using System;
     using UnityEngine;
     using Views;
+    using Zenject;
 
     public class UiView<TModel> : MonoBehaviour where TModel : IModel
     {
         protected CanvasGroup canvasGroup;
         public TModel Model { get; private set; }
-
         protected virtual void Initialize(TModel model)
         {
             Model = model;
