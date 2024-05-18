@@ -9,6 +9,7 @@ namespace Code.Core
 
     public class TimerMonoInstaller : MonoInstaller
     {
+        public LapTimeView lapTimeViewPrefab;
         public override void InstallBindings()
         {
             //todo replace as single
@@ -20,6 +21,8 @@ namespace Code.Core
             Container.Bind<TimerModel>().AsSingle();
             Container.Bind<ClockScreenModel>().AsSingle();
             Container.Bind<ControlPanelModel>().AsSingle();
+            Container.Bind<LapTimeModel>().AsTransient();
+            Container.BindFactory<LapTimeView, LapTimeView.Factory>().FromComponentInNewPrefab(lapTimeViewPrefab);
         }
     }
 }

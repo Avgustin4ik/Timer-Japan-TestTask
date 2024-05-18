@@ -55,7 +55,6 @@ namespace Code.Core.Views
         private void LapStopwatch()
         {
             stopwatchView.Model.Lap.Execute(true);
-            throw new NotImplementedException("LapStopwatch not implemented yet!");
         }
     }
 }

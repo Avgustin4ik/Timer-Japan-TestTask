@@ -35,6 +35,7 @@ namespace Code.Core.Models
     [Serializable]
     public struct LapTime
     {
+        public int Index;
         public float Global;
         public float Difference;
     }

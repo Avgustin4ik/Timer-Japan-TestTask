@@ -189,7 +189,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 7683748369517795109}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.5714288
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -228,7 +228,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.00003228904}
+  m_AnchoredPosition: {x: 0, y: 0.42015478}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &2829302008806384633
@@ -576,7 +576,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1380542107514723611, guid: 82b4e46c2e1f9844bbf7690285be02c7, type: 3}
       propertyPath: m_Name
-      value: Laps
+      value: LapView
       objectReference: {fileID: 0}
     - target: {fileID: 2353220941101499428, guid: 82b4e46c2e1f9844bbf7690285be02c7, type: 3}
       propertyPath: m_Pivot.x
@@ -837,6 +837,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeText: {fileID: 6754954540257405230}
+  lapView: {fileID: 0}
+  lapsContainer: {fileID: 0}
 --- !u!114 &3365767576265409995 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6116030963150173466, guid: 69c5067780f18b349952daf4dc029931, type: 3}

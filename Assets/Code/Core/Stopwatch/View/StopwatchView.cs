@@ -12,8 +12,9 @@ namespace Code.Core.Views
     {
         [SerializeField] private TextMeshProUGUI timeText;
         [SerializeField] private LapTimeView lapView;
-        
+        [SerializeField] private RectTransform lapsContainer;
         private IDisposable _timerRx;
+        [Inject] private LapTimeView.Factory _lapTimeViewFactory;
         
         [Inject]
         protected override void Initialize(StopwatchModel model)
@@ -24,18 +25,27 @@ namespace Code.Core.Views
             model.Reset.Subscribe(_ => Reset()).AddTo(this);
             model.Lap.Subscribe(_ => Lap()).AddTo(this);
             
+            model.Laps.ObserveAdd().Subscribe(x =>
+            {
+                var lapTimeView = _lapTimeViewFactory.Create();
+                lapTimeView.transform.SetParent(lapsContainer);
+                lapTimeView.transform.localScale = Vector3.one;
+                lapTimeView.transform.position = Vector3.zero;
+                lapTimeView.Model.LapTime.Value = x.Value;
+            }).AddTo(this);
+            
+            model.Laps.ObserveReset().Subscribe(x => KillAllLaps()).AddTo(this);
             base.Initialize(model);
         }
 
-        private void Lap()
+        private void KillAllLaps()
         {
-            throw new NotImplementedException("LapStopwatch not implemented yet!");
-            Model.Laps.Add(new LapTime
+            foreach (Transform child in lapsContainer)
             {
-                Global = Time.time - Model.StartTime,
-                Difference = Time.time - Model.StartTime - Model.PauseDuration
-            });
+                Destroy(child.gameObject);
+            }
         }
+
 
         private void Pause()
         {
@@ -71,6 +81,15 @@ namespace Code.Core.Views
             {
                 var time = Time.time - Model.StartTime - Model.PauseDuration;
                 Model.Time.Value = TimeSpan.FromSeconds(time);
+            });
+        }
+        public void Lap()
+        {
+            Model.Laps.Add(new LapTime
+            {
+                Index = Model.Laps.Count + 1,
+                Global = (float)Model.Time.Value.TotalSeconds,
+                Difference = Model.Laps.Count > 1 ? Time.time - Model.Laps[^1].Global : 0f
             });
         }
     }
