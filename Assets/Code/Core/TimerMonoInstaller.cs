@@ -1,7 +1,9 @@
 namespace Code.Core
 {
     using Abstract;
+    using Clock;
     using Models;
+    using Panel.View;
     using Views;
     using Zenject;
 
@@ -16,6 +18,8 @@ namespace Code.Core
             Container.Bind<Models.ClockModel>().AsSingle();
             Container.Bind<TimerScreenModel>().AsSingle();
             Container.Bind<TimerModel>().AsSingle();
+            Container.Bind<ClockScreenModel>().AsSingle();
+            Container.Bind<ControlPanelModel>().AsSingle();
         }
     }
 }
