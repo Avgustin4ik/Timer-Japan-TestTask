@@ -16,14 +16,21 @@ namespace Code.Core.Views
         public float LastPauseTime;
         public float PauseDuration;
         public bool IsClearStart = true;
+        
+        public ReadOnlyReactiveProperty<bool> IsElapsed { get; set; }
 
+        private TimerModel()
+        {
+            IsElapsed = Time.Select(x => x < TimeSpan.Zero && ElapsedTime != 0).ToReadOnlyReactiveProperty();
+        }
+        
         public void ResetValues()
         {
             Time.Value = TimeSpan.Zero;
-            StartTime = 0;
-            ElapsedTime = 0;
-            LastPauseTime = 0;
-            PauseDuration = 0;
+            StartTime = default;
+            ElapsedTime = default;
+            LastPauseTime = default;
+            PauseDuration = default;
             IsClearStart = true;
         }
     }

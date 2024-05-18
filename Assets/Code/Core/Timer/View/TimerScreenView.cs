@@ -12,6 +12,7 @@ namespace Code.Core.Views
         [SerializeField] private Button setTimerButton;
         [SerializeField] private SetterTimerView setter;
         [SerializeField] private TimerView timer;
+
         [Inject]
         protected override void Initialize(TimerScreenModel model)
         {
@@ -21,6 +22,7 @@ namespace Code.Core.Views
 
             setter.Model.Start.Subscribe(StartTimer).AddTo(this);
             setter.Model.Cancel.Subscribe(_ =>Cancel()).AddTo(this);
+            timer.Model.Reset.Subscribe(_ => InitialState()).AddTo(this);
 
             base.Initialize(model);
         }
