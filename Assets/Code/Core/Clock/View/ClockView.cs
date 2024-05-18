@@ -6,13 +6,17 @@ namespace Code.Core.Views
     using TMPro;
     using UniRx;
     using UnityEngine;
+    using Zenject;
 
     public class ClockView : UiView<ClockModel>
     {
         [SerializeField] private TextMeshProUGUI timeText;
+        [SerializeField] private TextMeshProUGUI timeZone;
+        [Inject]
         protected override void Initialize(ClockModel model)
         {
             model.Time.Subscribe(SetTime).AddTo(this);
+            model.TimeZone.Subscribe(x => timeZone.text = x).AddTo(this);
             base.Initialize(model);
         }
         private void SetTime(TimeSpan time)
