@@ -8,7 +8,6 @@ namespace Code.Core.Views
     {
         public IReactiveProperty<TimeSpan> Time = new ReactiveProperty<TimeSpan>();
         public IReactiveCommand<bool> Reset = new ReactiveCommand<bool>();
-        public IReactiveCommand<bool> Pause = new ReactiveCommand<bool>();
         public IReactiveCommand<bool> Run = new ReactiveCommand<bool>();
         
         public float StartTime;

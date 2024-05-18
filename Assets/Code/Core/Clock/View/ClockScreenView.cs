@@ -8,10 +8,5 @@ namespace Code.Core.Clock
 
     public class ClockScreenView : ScreenView
     {
-        [Inject]
-        protected override void Initialize(ScreenModel model)
-        {
-            base.Initialize(model);
-        }
     }
 }

@@ -6,24 +6,30 @@ namespace Code.Core.Views
     using TMPro;
     using UniRx;
     using UnityEngine;
+    using UnityEngine.UI;
     using Zenject;
 
     public class StopwatchView : UiView<StopwatchModel>
     {
+        [Header("Buttons")]
+        [SerializeField] private Button startButton;
+        [SerializeField] private Button pauseButton;
+        [SerializeField] private Button resetButton;
+        [SerializeField] private Button lapButton;
+        [Space(5)]
+        [Header("Ui")]
         [SerializeField] private TextMeshProUGUI timeText;
-        [SerializeField] private LapTimeView lapView;
         [SerializeField] private RectTransform lapsContainer;
-        private IDisposable _timerRx;
         [Inject] private LapTimeView.Factory _lapTimeViewFactory;
         
-        [Inject]
         protected override void Initialize(StopwatchModel model)
         {
+            startButton.onClick.AsObservable().Subscribe(x => Run()).AddTo(this);
+            pauseButton.onClick.AsObservable().Subscribe(x => Pause()).AddTo(this);
+            resetButton.onClick.AsObservable().Subscribe(x => Reset()).AddTo(this);
+            lapButton.onClick.AsObservable().Subscribe(x => Lap()).AddTo(this);
+            
             model.Time.Subscribe(x=>DisplayTime(x)).AddTo(this);
-            model.Run.Subscribe(_=>Run()).AddTo(this);
-            model.Pause.Subscribe(_ =>Pause()).AddTo(this);
-            model.Reset.Subscribe(_ => Reset()).AddTo(this);
-            model.Lap.Subscribe(_ => Lap()).AddTo(this);
             
             model.Laps.ObserveAdd().Subscribe(x =>
             {
@@ -49,20 +55,22 @@ namespace Code.Core.Views
 
         private void Pause()
         {
-            Model.IsClearStart = false;
-            Model.LastPauseTime = Time.time;
-            Stop();
+            startButton.gameObject.SetActive(true);
+            pauseButton.gameObject.SetActive(false);
+            resetButton.gameObject.SetActive(true);
+            lapButton.gameObject.SetActive(false);
+            
+            Model.Pause();
         }
 
         private void Reset()
         {
+            startButton.gameObject.SetActive(true);
+            pauseButton.gameObject.SetActive(false);
+            resetButton.gameObject.SetActive(true);
+            lapButton.gameObject.SetActive(false);
+            
             Model.ResetValues();
-            Stop();
-        }
-
-        private void Stop()
-        {
-            _timerRx.Dispose();
         }
 
         private void DisplayTime(TimeSpan timeSpan)
@@ -72,25 +80,14 @@ namespace Code.Core.Views
 
         private void Run()
         {
-            //todo move to model
-            if(Model.IsClearStart)
-                Model.StartTime = Time.time;
-            else
-                Model.PauseDuration += Time.time - Model.LastPauseTime;
-            _timerRx = Observable.EveryUpdate().Subscribe(_ =>
-            {
-                var time = Time.time - Model.StartTime - Model.PauseDuration;
-                Model.Time.Value = TimeSpan.FromSeconds(time);
-            });
+            startButton.gameObject.SetActive(false);
+            pauseButton.gameObject.SetActive(true);
+            resetButton.gameObject.SetActive(false);
+            lapButton.gameObject.SetActive(true);
+            
+            Model.Run();
         }
-        public void Lap()
-        {
-            Model.Laps.Add(new LapTime
-            {
-                Index = Model.Laps.Count + 1,
-                Global = (float)Model.Time.Value.TotalSeconds,
-                Difference = Model.Laps.Count > 0 ? Time.time - Model.Laps[^1].Global : 0f
-            });
-        }
+
+        private void Lap() => Model.Lap();
     }
 }

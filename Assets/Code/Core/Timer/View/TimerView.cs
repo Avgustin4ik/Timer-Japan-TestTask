@@ -11,18 +11,16 @@ namespace Code.Core.Views
     public class TimerView : UiView<TimerModel>
     {
         [SerializeField] private TextMeshProUGUI timeText;
-        [SerializeField] private Button startButton;
+        [SerializeField] private Button resumeButton;
         [SerializeField] private Button pauseButton;
         [SerializeField] private Button resetButton;
         
-        
         private IDisposable _timerRx;
         
-        [Inject]
         protected override void Initialize(TimerModel model)
         {
             pauseButton.OnClickAsObservable().Subscribe(x=>Pause()).AddTo(this);
-            startButton.OnClickAsObservable().Subscribe(x=>Run()).AddTo(this);
+            resumeButton.OnClickAsObservable().Subscribe(x=>Run()).AddTo(this);
             resetButton.OnClickAsObservable().Subscribe(x=>Reset()).AddTo(this);
             
             model.Time.Subscribe(x=>DisplayTime(x)).AddTo(this);
@@ -35,7 +33,7 @@ namespace Code.Core.Views
         {
             if(!isElapsed) return;
             Stop();
-            startButton.gameObject.SetActive(false);
+            resumeButton.gameObject.SetActive(false);
             pauseButton.gameObject.SetActive(false);
 #if UNITY_EDITOR
             Debug.LogError("not implemented yet");
@@ -48,13 +46,13 @@ namespace Code.Core.Views
             Model.ResetValues();
             Model.Reset.Execute(true);
             pauseButton.gameObject.SetActive(false);
-            startButton.gameObject.SetActive(true);
+            resumeButton.gameObject.SetActive(true);
         }
 
         private void Pause()
         {
             pauseButton.gameObject.SetActive(false);
-            startButton.gameObject.SetActive(true);
+            resumeButton.gameObject.SetActive(true);
             
             Model.IsClearStart = false;
             Model.LastPauseTime = Time.time;
@@ -77,7 +75,7 @@ namespace Code.Core.Views
         public void Run()
         {
             pauseButton.gameObject.SetActive(true);
-            startButton.gameObject.SetActive(false);
+            resumeButton.gameObject.SetActive(false);
             
             if (Model.IsClearStart)
                 Model.StartTime = Time.time;

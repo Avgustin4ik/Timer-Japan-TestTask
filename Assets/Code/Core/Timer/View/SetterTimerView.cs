@@ -14,7 +14,6 @@ namespace Code.Core.Views
         public ScrollMechanic seconds;
         [SerializeField] private Button startButton;
         [SerializeField] private Button cancelButton;
-        [Inject]
         protected override void Initialize(SetterTimerModel model)
         {
             hours.Initialize(LoadSymbols(24));

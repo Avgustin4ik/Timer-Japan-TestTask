@@ -23,7 +23,6 @@ namespace Code.Core.Panel.View
         {
             DisplayScreen(mainScreen);
         }
-        [Inject]
         protected override void Initialize(ControlPanelModel model)
         {
             foreach (var pairButtonScreen in PairButtonScreens)

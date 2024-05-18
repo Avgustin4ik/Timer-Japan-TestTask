@@ -14,14 +14,19 @@ namespace Code.Core.Views
         [SerializeField] private SetterTimerView setter;
         [SerializeField] private TimerView timer;
 
-        [Inject]
         protected override void Initialize(ScreenModel model)
         {
             InitialState();
             
             setTimerButton.onClick.AddListener(() => ShowSetter());
         
-            setter.Model.Start.Subscribe(StartTimer).AddTo(this);
+            setter.Model.Start.Subscribe(x =>
+            {
+                if (x!=TimeSpan.Zero)
+                    StartTimer(x);
+            }).
+            AddTo(this);
+            
             setter.Model.Cancel.Subscribe(_ =>Cancel()).AddTo(this);
             timer.Model.Reset.Subscribe(_ => InitialState()).AddTo(this);
         

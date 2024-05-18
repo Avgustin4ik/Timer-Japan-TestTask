@@ -9,6 +9,7 @@ namespace Code.Core.Abstract
     {
         protected CanvasGroup canvasGroup;
         public TModel Model { get; private set; }
+        [Inject]
         protected virtual void Initialize(TModel model)
         {
             Model = model;

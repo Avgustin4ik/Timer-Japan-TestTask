@@ -14,7 +14,6 @@ namespace Code.Core.Views
         public TextMeshProUGUI Global;
         public TextMeshProUGUI Difference;
 
-        [Inject]
         protected override void Initialize(LapTimeModel model)
         {
             model.LapTime.Subscribe(x =>

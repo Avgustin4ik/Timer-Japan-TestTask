@@ -12,7 +12,6 @@ namespace Code.Core.Views
     {
         [SerializeField] private TextMeshProUGUI timeText;
         [SerializeField] private TextMeshProUGUI timeZone;
-        [Inject]
         protected override void Initialize(ClockModel model)
         {
             model.Time.Subscribe(SetTime).AddTo(this);

@@ -1,21 +1,14 @@
 namespace Code.Core.Models
 {
     using System;
-    using System.Collections.Generic;
     using Code.Core.Abstract;
     using UniRx;
 
     public class StopwatchModel : IModel
     {
         public IReactiveProperty<TimeSpan> Time = new ReactiveProperty<TimeSpan>();
-        
-        public IReactiveCommand<bool> Run = new ReactiveCommand<bool>();
-        public IReactiveCommand<bool> Pause = new ReactiveCommand<bool>();
-        public IReactiveCommand<bool> Reset = new ReactiveCommand<bool>();
-        public IReactiveCommand<bool> Lap = new ReactiveCommand<bool>();
-        
         public IReactiveCollection<LapTime> Laps = new ReactiveCollection<LapTime>();
-        
+
         public float StartTime;
         public float LastPauseTime;
         public float PauseDuration;
@@ -30,13 +23,42 @@ namespace Code.Core.Models
             IsClearStart = true;
             Laps.Clear();
         }
-    }
+        
+        private IDisposable _timerRx;
 
-    [Serializable]
-    public struct LapTime
-    {
-        public int Index;
-        public float Global;
-        public float Difference;
+        public void Run()
+        {
+            if(IsClearStart)
+                StartTime = UnityEngine.Time.time;
+            else
+                PauseDuration += UnityEngine.Time.time - LastPauseTime;
+            _timerRx = Observable.EveryUpdate().Subscribe(_ =>
+            {
+                var time = UnityEngine.Time.time - StartTime - PauseDuration;
+                Time.Value = TimeSpan.FromSeconds(time);
+            });
+        }
+        
+        public void Pause()
+        {
+            IsClearStart = false;
+            LastPauseTime = UnityEngine.Time.time;
+            Stop();
+        }
+        
+        public void Stop()
+        {
+            _timerRx.Dispose();
+        }
+        
+        public void Lap()
+        {
+            Laps.Add(new LapTime
+            {
+                Index = Laps.Count + 1,
+                Global = Time.Value.TotalSeconds,
+                Difference = Laps.Count > 0 ? Time.Value.TotalSeconds - Laps[^1].Global : 0f
+            });
+        }
     }
 }
