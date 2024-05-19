@@ -366,17 +366,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &588631524 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4389368487709822155, guid: ec2205519b753974481ffe7503e79406, type: 3}
-  m_PrefabInstance: {fileID: 4294034307260100685}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!224 &663975737 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6048918143954564953, guid: c6b365ece484b844c82aec0ce51b56c4, type: 3}
@@ -675,10 +664,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Screen-Clock
       objectReference: {fileID: 0}
-    - target: {fileID: 2668603486560252767, guid: c6b365ece484b844c82aec0ce51b56c4, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6048918143954564953, guid: c6b365ece484b844c82aec0ce51b56c4, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -898,39 +883,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 769008705538133763, guid: 28bafe7a13c29ef4d9dc374ffa770f77, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.00036621094
+      value: 0.32733154
       objectReference: {fileID: 0}
     - target: {fileID: 1401943112827238525, guid: 28bafe7a13c29ef4d9dc374ffa770f77, type: 3}
       propertyPath: m_Name
       value: Screen-Stopwatch
-      objectReference: {fileID: 0}
-    - target: {fileID: 1996949793605144444, guid: 28bafe7a13c29ef4d9dc374ffa770f77, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1996949793605144444, guid: 28bafe7a13c29ef4d9dc374ffa770f77, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1996949793605144444, guid: 28bafe7a13c29ef4d9dc374ffa770f77, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1996949793605144444, guid: 28bafe7a13c29ef4d9dc374ffa770f77, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1996949793605144444, guid: 28bafe7a13c29ef4d9dc374ffa770f77, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 560
-      objectReference: {fileID: 0}
-    - target: {fileID: 1996949793605144444, guid: 28bafe7a13c29ef4d9dc374ffa770f77, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 592.85
-      objectReference: {fileID: 0}
-    - target: {fileID: 1996949793605144444, guid: 28bafe7a13c29ef4d9dc374ffa770f77, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -256.09
       objectReference: {fileID: 0}
     - target: {fileID: 5795906529743757125, guid: 28bafe7a13c29ef4d9dc374ffa770f77, type: 3}
       propertyPath: m_AnchorMax.x
@@ -1030,10 +987,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7683748369517795109, guid: 28bafe7a13c29ef4d9dc374ffa770f77, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7683748369517795109, guid: 28bafe7a13c29ef4d9dc374ffa770f77, type: 3}
-      propertyPath: m_AnchorMin.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1294,8 +1247,8 @@ PrefabInstance:
     m_TransformParent: {fileID: 3640173}
     m_Modifications:
     - target: {fileID: 458722361669365274, guid: ec2205519b753974481ffe7503e79406, type: 3}
-      propertyPath: m_Name
-      value: ResumeButton
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1496608071484660113, guid: ec2205519b753974481ffe7503e79406, type: 3}
       propertyPath: m_Pivot.x
@@ -1377,10 +1330,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4129000643043545495, guid: ec2205519b753974481ffe7503e79406, type: 3}
-      propertyPath: resumeButton
-      value: 
-      objectReference: {fileID: 588631524}
     - target: {fileID: 5091581241331611803, guid: ec2205519b753974481ffe7503e79406, type: 3}
       propertyPath: camera
       value: 
@@ -1389,6 +1338,10 @@ PrefabInstance:
       propertyPath: targetCanvas
       value: 
       objectReference: {fileID: 3640173}
+    - target: {fileID: 5241262628865546667, guid: ec2205519b753974481ffe7503e79406, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6238445295683546192, guid: ec2205519b753974481ffe7503e79406, type: 3}
       propertyPath: camera
       value: 
@@ -1400,10 +1353,6 @@ PrefabInstance:
     - target: {fileID: 6545007382472796701, guid: ec2205519b753974481ffe7503e79406, type: 3}
       propertyPath: m_Name
       value: Screen-Timer
-      objectReference: {fileID: 0}
-    - target: {fileID: 6545007382472796701, guid: ec2205519b753974481ffe7503e79406, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7427891791063992595, guid: ec2205519b753974481ffe7503e79406, type: 3}
       propertyPath: camera
