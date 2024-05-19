@@ -36,6 +36,7 @@ RectTransform:
   - {fileID: 7731387172615063355}
   - {fileID: 4272416513185648104}
   m_Father: {fileID: 0}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
@@ -107,18 +108,12 @@ MonoBehaviour:
     Screen: {fileID: 0}
   - Button: {fileID: 8535766414423092836}
     Screen: {fileID: 0}
-  ClockButton: {fileID: 2668747839758183752}
-  TimerButton: {fileID: 2771096756160554167}
-  AlarmButton: {fileID: 8535766414423092836}
-  ClockScreen: {fileID: 0}
-  TimerScreen: {fileID: 0}
-  AlarmScreen: {fileID: 0}
+  mainScreen: {fileID: 0}
 --- !u!1001 &117767688340025905
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    serializedVersion: 3
     m_TransformParent: {fileID: 6413381465893548053}
     m_Modifications:
     - target: {fileID: 1515635964519238247, guid: 31a19bd2a9949d4409982f8cacf0ae22, type: 3}
@@ -136,6 +131,10 @@ PrefabInstance:
     - target: {fileID: 7703691648655242506, guid: 31a19bd2a9949d4409982f8cacf0ae22, type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7703691648655242506, guid: 31a19bd2a9949d4409982f8cacf0ae22, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7703691648655242506, guid: 31a19bd2a9949d4409982f8cacf0ae22, type: 3}
       propertyPath: m_AnchorMax.x
@@ -218,9 +217,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 31a19bd2a9949d4409982f8cacf0ae22, type: 3}
 --- !u!114 &2771096756160554167 stripped
 MonoBehaviour:
@@ -243,7 +239,6 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    serializedVersion: 3
     m_TransformParent: {fileID: 6413381465893548053}
     m_Modifications:
     - target: {fileID: 1515635964519238247, guid: 31a19bd2a9949d4409982f8cacf0ae22, type: 3}
@@ -257,6 +252,10 @@ PrefabInstance:
     - target: {fileID: 7703691648655242506, guid: 31a19bd2a9949d4409982f8cacf0ae22, type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7703691648655242506, guid: 31a19bd2a9949d4409982f8cacf0ae22, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7703691648655242506, guid: 31a19bd2a9949d4409982f8cacf0ae22, type: 3}
       propertyPath: m_AnchorMax.x
@@ -339,9 +338,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 31a19bd2a9949d4409982f8cacf0ae22, type: 3}
 --- !u!114 &2668747839758183752 stripped
 MonoBehaviour:
@@ -364,7 +360,6 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    serializedVersion: 3
     m_TransformParent: {fileID: 6413381465893548053}
     m_Modifications:
     - target: {fileID: 1515635964519238247, guid: 31a19bd2a9949d4409982f8cacf0ae22, type: 3}
@@ -382,6 +377,10 @@ PrefabInstance:
     - target: {fileID: 7703691648655242506, guid: 31a19bd2a9949d4409982f8cacf0ae22, type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7703691648655242506, guid: 31a19bd2a9949d4409982f8cacf0ae22, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7703691648655242506, guid: 31a19bd2a9949d4409982f8cacf0ae22, type: 3}
       propertyPath: m_AnchorMax.x
@@ -464,9 +463,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 31a19bd2a9949d4409982f8cacf0ae22, type: 3}
 --- !u!224 &4272416513185648104 stripped
 RectTransform:
