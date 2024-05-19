@@ -28,11 +28,11 @@ namespace Code.Core.Views
             AddTo(this);
             
             setter.Model.Cancel.Subscribe(_ =>Cancel()).AddTo(this);
-            timer.Model.Reset.Subscribe(_ => InitialState()).AddTo(this);
-        
+            timer.Model.IsReset.Subscribe(_ => InitialState()).AddTo(this);
+            
             base.Initialize(model);
         }
-        
+
         private void InitialState()
         {
             setter.Display(false);
@@ -56,8 +56,8 @@ namespace Code.Core.Views
         {
             setter.Display(false);
             timer.Display(true);
-            timer.Model.ElapsedTime = (float)from.TotalSeconds;
-            timer.Model.Run.Execute(true);
+            timer.InitialState();
+            timer.Model.Run(from);
         }
     }
 }

@@ -4,7 +4,7 @@ namespace Code.Core.Models
     using Code.Core.Abstract;
     using UniRx;
 
-    public class ClockModel : IModel
+    public class ClockModel : IModel, IClock
     {
         public IReactiveProperty<TimeSpan> Time = new ReactiveProperty<TimeSpan>();
         public IReactiveProperty<string> TimeZone = new ReactiveProperty<string>();
@@ -22,5 +22,7 @@ namespace Code.Core.Models
         {
             _timeRx.Dispose();
         }
+
+        public TimeSpan GetCurrentTime() => Time.Value;
     }
 }

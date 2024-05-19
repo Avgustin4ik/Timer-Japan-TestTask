@@ -30,7 +30,7 @@ namespace Code.Core.Timer.Alarm.View
         {
             _audioAudioService.StopAlarm();
             Display(false);
-            _timer.Reset.Execute(true);
+            _timer.IsReset.Execute(true);
         }
         private void PlayAlarmSound(bool isElapsed)
         {

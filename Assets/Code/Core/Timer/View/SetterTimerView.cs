@@ -3,6 +3,7 @@ namespace Code.Core.Views
     using System;
     using System.Collections.Generic;
     using Abstract;
+    using UniRx;
     using UnityEngine;
     using UnityEngine.UI;
     using Zenject;
@@ -20,8 +21,8 @@ namespace Code.Core.Views
             minutes.Initialize(LoadSymbols(60));
             seconds.Initialize(LoadSymbols(60));
             
-            startButton.onClick.AddListener(() => Model.Start.Execute(GetTimeSpan()));
-            cancelButton.onClick.AddListener(() => Model.Cancel.Execute(true));
+            startButton.onClick.AsObservable().Subscribe(x => Model.Start.Execute(GetTimeSpan()));
+            cancelButton.onClick.AsObservable().Subscribe(x => Model.Cancel.Execute(true));
             base.Initialize(model);
         }
 
