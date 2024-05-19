@@ -4,6 +4,7 @@ namespace Code.Core
     using Clock;
     using Models;
     using Panel.View;
+    using Timer.Alarm.View;
     using Views;
     using Zenject;
 
