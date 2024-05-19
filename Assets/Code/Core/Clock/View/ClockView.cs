@@ -6,7 +6,6 @@ namespace Code.Core.Views
     using TMPro;
     using UniRx;
     using UnityEngine;
-    using Zenject;
 
     public class ClockView : UiView<ClockModel>
     {

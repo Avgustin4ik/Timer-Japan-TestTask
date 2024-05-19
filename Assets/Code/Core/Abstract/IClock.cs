@@ -2,9 +2,8 @@ namespace Code.Core
 {
     using System;
 
-    public interface ITimer : IControl
+    public interface IClock
     {
         public abstract TimeSpan GetCurrentTime();
-        public abstract void Run(TimeSpan time);
     }
 }

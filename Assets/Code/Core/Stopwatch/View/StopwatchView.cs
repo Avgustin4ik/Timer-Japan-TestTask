@@ -63,7 +63,7 @@ namespace Code.Core.Views
             resetButton.gameObject.SetActive(true);
             lapButton.gameObject.SetActive(false);
             
-            Model.ResetValues();
+            Model.Reset();
         }
 
         private void DisplayTime(TimeSpan timeSpan)
@@ -78,16 +78,7 @@ namespace Code.Core.Views
             resetButton.gameObject.SetActive(false);
             lapButton.gameObject.SetActive(true);
             
-            if(Model.IsClearStart)
-                Model.StartTime = UnityEngine.Time.time;
-            else
-                Model.PauseDuration += UnityEngine.Time.time - Model.LastPauseTime;
-            _timerRx = Observable.EveryUpdate().Subscribe(_ =>
-            {
-                var time = UnityEngine.Time.time - Model.StartTime - Model.PauseDuration;
-                Model.Time.Value = TimeSpan.FromSeconds(time);
-            });
-            
+            Model.Run();
         }
         public void Pause()
         {
@@ -96,23 +87,12 @@ namespace Code.Core.Views
             resetButton.gameObject.SetActive(true);
             lapButton.gameObject.SetActive(false);
             
-            Model.IsClearStart = false;
-            Model.LastPauseTime = UnityEngine.Time.time;
-            Stop();
-        }
-        public void Stop()
-        {
-            _timerRx.Dispose();
+            Model.Pause();
         }
 
         private void Lap()
         {
-            Model.Laps.Add(new LapTime
-            {
-                Index = Model.Laps.Count + 1,
-                Global = Model.Time.Value.TotalSeconds,
-                Difference = Model.Laps.Count > 0 ? Model.Time.Value.TotalSeconds - Model.Laps[^1].Global : 0f
-            });
+           Model.LapStopwatch();
         }
     }
 }

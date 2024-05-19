@@ -8,10 +8,4 @@ namespace Code.Core
         [Inject] public IStopwatch Stopwatch { get; private set; }
         [Inject] public IClock Clock { get; private set; }
     }
-
-
-    public interface ITimerApplication
-    {
-        
-    }
 }

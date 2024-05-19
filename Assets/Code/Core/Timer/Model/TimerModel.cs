@@ -55,11 +55,13 @@ namespace Code.Core.Views
             IsReset.Execute(true);
         }
 
+        public TimeSpan GetCurrentTime() => Time.Value;
+
         public void Run(TimeSpan time = default)
         {
             if (IsClearStart)
             {
-                ResetValues();//todo check if we need it
+                ResetValues();
                 StartTime = UnityEngine.Time.time;
                 ElapsedTime = (float)time.TotalSeconds;
             }
