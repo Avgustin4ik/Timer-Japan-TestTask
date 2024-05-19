@@ -18,7 +18,8 @@ namespace Code.Core.Views
         private IDisposable _alarmRx;
         public ReadOnlyReactiveProperty<bool> IsElapsed { get; set; }
         public IReactiveCommand<bool> IsReset = new ReactiveCommand<bool>();
-        private TimerModel()
+
+        public TimerModel()
         {
             IsElapsed = Time.Select(x => x < TimeSpan.Zero && ElapsedTime != 0).ToReadOnlyReactiveProperty();
             _alarmRx = IsElapsed.Select(x=>x==true).Subscribe(_ => Stop());
@@ -68,7 +69,7 @@ namespace Code.Core.Views
             else
                 PauseDuration += UnityEngine.Time.time - LastPauseTime;
             
-            _timerRx = Observable.Interval(TimeSpan.FromMilliseconds(1)).Subscribe(_ =>
+            _timerRx = Observable.EveryUpdate().Subscribe(_ =>
             {
                 Time.Value = TimeSpan.FromSeconds(ElapsedTime - (UnityEngine.Time.time - StartTime - PauseDuration));
             });

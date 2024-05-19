@@ -21,7 +21,7 @@ namespace Code.Core
             Container.Bind<LapTimeModel>().AsTransient().Lazy();
             Container.Bind<IAudioService>().To<Audio.AudioService>().AsSingle().Lazy();
 
-            Container.Bind<TimerModel>().AsSingle().Lazy();
+            Container.Bind<TimerModel>().AsTransient().Lazy();
         }
     }
 }
