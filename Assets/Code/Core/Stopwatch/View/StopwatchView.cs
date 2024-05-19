@@ -16,12 +16,15 @@ namespace Code.Core.Views
         [SerializeField] private Button pauseButton;
         [SerializeField] private Button resetButton;
         [SerializeField] private Button lapButton;
+        
         [Space(5)]
         [Header("Ui")]
         [SerializeField] private TextMeshProUGUI timeText;
         [SerializeField] private RectTransform lapsContainer;
         [Inject] private LapTimeView.Factory _lapTimeViewFactory;
         
+        private IDisposable _timerRx;
+
         protected override void Initialize(StopwatchModel model)
         {
             startButton.onClick.AsObservable().Subscribe(x => Run()).AddTo(this);
@@ -34,9 +37,10 @@ namespace Code.Core.Views
             model.Laps.ObserveAdd().Subscribe(x =>
             {
                 var lapTimeView = _lapTimeViewFactory.Create();
-                lapTimeView.transform.SetParent(lapsContainer);
-                lapTimeView.transform.localScale = Vector3.one;
-                lapTimeView.transform.position = Vector3.zero;
+                var lapTransform = lapTimeView.transform;
+                lapTransform.SetParent(lapsContainer);
+                lapTransform.localScale = Vector3.one;
+                lapTransform.position = Vector3.zero;
                 lapTimeView.Model.LapTime.Value = x.Value;
             }).AddTo(this);
             
@@ -51,18 +55,7 @@ namespace Code.Core.Views
                 Destroy(child.gameObject);
             }
         }
-
-
-        private void Pause()
-        {
-            startButton.gameObject.SetActive(true);
-            pauseButton.gameObject.SetActive(false);
-            resetButton.gameObject.SetActive(true);
-            lapButton.gameObject.SetActive(false);
-            
-            Model.Pause();
-        }
-
+        
         private void Reset()
         {
             startButton.gameObject.SetActive(true);
@@ -85,9 +78,41 @@ namespace Code.Core.Views
             resetButton.gameObject.SetActive(false);
             lapButton.gameObject.SetActive(true);
             
-            Model.Run();
+            if(Model.IsClearStart)
+                Model.StartTime = UnityEngine.Time.time;
+            else
+                Model.PauseDuration += UnityEngine.Time.time - Model.LastPauseTime;
+            _timerRx = Observable.EveryUpdate().Subscribe(_ =>
+            {
+                var time = UnityEngine.Time.time - Model.StartTime - Model.PauseDuration;
+                Model.Time.Value = TimeSpan.FromSeconds(time);
+            });
+            
+        }
+        public void Pause()
+        {
+            startButton.gameObject.SetActive(true);
+            pauseButton.gameObject.SetActive(false);
+            resetButton.gameObject.SetActive(true);
+            lapButton.gameObject.SetActive(false);
+            
+            Model.IsClearStart = false;
+            Model.LastPauseTime = UnityEngine.Time.time;
+            Stop();
+        }
+        public void Stop()
+        {
+            _timerRx.Dispose();
         }
 
-        private void Lap() => Model.Lap();
+        private void Lap()
+        {
+            Model.Laps.Add(new LapTime
+            {
+                Index = Model.Laps.Count + 1,
+                Global = Model.Time.Value.TotalSeconds,
+                Difference = Model.Laps.Count > 0 ? Model.Time.Value.TotalSeconds - Model.Laps[^1].Global : 0f
+            });
+        }
     }
 }

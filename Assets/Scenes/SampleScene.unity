@@ -176,7 +176,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 720, y: 1440}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 0.78
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -796,6 +796,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Screen-Alarm
       objectReference: {fileID: 0}
+    - target: {fileID: 1634726711865469093, guid: 7178310f2c793a549bdda4672a42b5b0, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3671131080095847477, guid: 7178310f2c793a549bdda4672a42b5b0, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -894,15 +898,39 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 769008705538133763, guid: 28bafe7a13c29ef4d9dc374ffa770f77, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: 0.00036621094
       objectReference: {fileID: 0}
     - target: {fileID: 1401943112827238525, guid: 28bafe7a13c29ef4d9dc374ffa770f77, type: 3}
       propertyPath: m_Name
       value: Screen-Stopwatch
       objectReference: {fileID: 0}
-    - target: {fileID: 1401943112827238525, guid: 28bafe7a13c29ef4d9dc374ffa770f77, type: 3}
-      propertyPath: m_IsActive
-      value: 1
+    - target: {fileID: 1996949793605144444, guid: 28bafe7a13c29ef4d9dc374ffa770f77, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1996949793605144444, guid: 28bafe7a13c29ef4d9dc374ffa770f77, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1996949793605144444, guid: 28bafe7a13c29ef4d9dc374ffa770f77, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1996949793605144444, guid: 28bafe7a13c29ef4d9dc374ffa770f77, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1996949793605144444, guid: 28bafe7a13c29ef4d9dc374ffa770f77, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 560
+      objectReference: {fileID: 0}
+    - target: {fileID: 1996949793605144444, guid: 28bafe7a13c29ef4d9dc374ffa770f77, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 592.85
+      objectReference: {fileID: 0}
+    - target: {fileID: 1996949793605144444, guid: 28bafe7a13c29ef4d9dc374ffa770f77, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -256.09
       objectReference: {fileID: 0}
     - target: {fileID: 5795906529743757125, guid: 28bafe7a13c29ef4d9dc374ffa770f77, type: 3}
       propertyPath: m_AnchorMax.x
@@ -914,14 +942,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5795906529743757125, guid: 28bafe7a13c29ef4d9dc374ffa770f77, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5933459682810982483, guid: 28bafe7a13c29ef4d9dc374ffa770f77, type: 3}
-      propertyPath: m_Size
-      value: 0.9999957
-      objectReference: {fileID: 0}
-    - target: {fileID: 5933459682810982483, guid: 28bafe7a13c29ef4d9dc374ffa770f77, type: 3}
-      propertyPath: m_Value
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7130908737809805769, guid: 28bafe7a13c29ef4d9dc374ffa770f77, type: 3}
@@ -1380,6 +1400,10 @@ PrefabInstance:
     - target: {fileID: 6545007382472796701, guid: ec2205519b753974481ffe7503e79406, type: 3}
       propertyPath: m_Name
       value: Screen-Timer
+      objectReference: {fileID: 0}
+    - target: {fileID: 6545007382472796701, guid: ec2205519b753974481ffe7503e79406, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7427891791063992595, guid: ec2205519b753974481ffe7503e79406, type: 3}
       propertyPath: camera

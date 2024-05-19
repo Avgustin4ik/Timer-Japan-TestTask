@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6922866831091751350}
   - component: {fileID: 811013421174928943}
   m_Layer: 5
-  m_Name: Screen-Stiowatch
+  m_Name: Screen-Stopwatch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -185,7 +185,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 7683748369517795109}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.9998541
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -223,7 +223,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0.041625977}
   m_SizeDelta: {x: 0, y: 180}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &2829302008806384633
@@ -488,10 +488,10 @@ RectTransform:
   - {fileID: 4255504809383772256}
   m_Father: {fileID: 7130908737809805769}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -260}
-  m_SizeDelta: {x: -160, y: -740}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -256.09}
+  m_SizeDelta: {x: 560, y: 592.85}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &257906117529829706
 CanvasRenderer:
@@ -547,7 +547,7 @@ MonoBehaviour:
   m_Horizontal: 0
   m_Vertical: 1
   m_MovementType: 1
-  m_Elasticity: 0.1
+  m_Elasticity: 0.7
   m_Inertia: 0
   m_DecelerationRate: 0.135
   m_ScrollSensitivity: 1

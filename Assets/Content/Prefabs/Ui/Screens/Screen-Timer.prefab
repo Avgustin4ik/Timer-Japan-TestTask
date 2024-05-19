@@ -495,6 +495,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3649293964351680587, guid: 0f78977a58d1a644a856203eb1bdf780, type: 3}
+      propertyPath: m_Name
+      value: ResumeButton
+      objectReference: {fileID: 0}
     - target: {fileID: 7317856668942017223, guid: 0f78977a58d1a644a856203eb1bdf780, type: 3}
       propertyPath: m_Name
       value: TimerView
@@ -582,7 +586,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeText: {fileID: 4612585298432149157}
-  startButton: {fileID: 4389368487709822155}
+  resumeButton: {fileID: 4389368487709822155}
   pauseButton: {fileID: 1039785647040167530}
   resetButton: {fileID: 3942203099809813133}
 --- !u!1001 &5898624941049629474

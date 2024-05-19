@@ -23,42 +23,5 @@ namespace Code.Core.Models
             IsClearStart = true;
             Laps.Clear();
         }
-        
-        private IDisposable _timerRx;
-
-        public void Run()
-        {
-            if(IsClearStart)
-                StartTime = UnityEngine.Time.time;
-            else
-                PauseDuration += UnityEngine.Time.time - LastPauseTime;
-            _timerRx = Observable.EveryUpdate().Subscribe(_ =>
-            {
-                var time = UnityEngine.Time.time - StartTime - PauseDuration;
-                Time.Value = TimeSpan.FromSeconds(time);
-            });
-        }
-        
-        public void Pause()
-        {
-            IsClearStart = false;
-            LastPauseTime = UnityEngine.Time.time;
-            Stop();
-        }
-        
-        public void Stop()
-        {
-            _timerRx.Dispose();
-        }
-        
-        public void Lap()
-        {
-            Laps.Add(new LapTime
-            {
-                Index = Laps.Count + 1,
-                Global = Time.Value.TotalSeconds,
-                Difference = Laps.Count > 0 ? Time.Value.TotalSeconds - Laps[^1].Global : 0f
-            });
-        }
     }
 }

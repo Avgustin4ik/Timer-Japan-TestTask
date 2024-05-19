@@ -28,14 +28,15 @@ namespace Code.Core.Timer.Alarm.View
 
         private void StopAlarm()
         {
+            _audioAudioService.StopAlarm();
             Display(false);
             _timer.Reset.Execute(true);
-            _audioAudioService.StopAlarm();
         }
         private void PlayAlarmSound(bool isElapsed)
         {
-            if(!isElapsed) return;
+            if (!isElapsed) return;
             _audioAudioService.PlayAlarm();
+            return;
         }
     }
 }

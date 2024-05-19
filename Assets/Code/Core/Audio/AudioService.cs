@@ -30,6 +30,7 @@ namespace Code.Core.Audio
             {
                 Object.Destroy(source.gameObject);
             }
+            cashedAudioSources.Clear();
         }
     }
 }

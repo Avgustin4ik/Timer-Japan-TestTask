@@ -35,9 +35,6 @@ namespace Code.Core.Views
             Stop();
             resumeButton.gameObject.SetActive(false);
             pauseButton.gameObject.SetActive(false);
-#if UNITY_EDITOR
-            Debug.LogError("not implemented yet");
-#endif
         }
 
         private void Reset()
