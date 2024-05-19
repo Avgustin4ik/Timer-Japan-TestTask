@@ -274,7 +274,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8918b365314438eb90f8bd813c657ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lapTimeViewPrefab: {fileID: 3742580072609873487, guid: 82b4e46c2e1f9844bbf7690285be02c7, type: 3}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -451,10 +450,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89715ad69b973a14899afa2c6730b30b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _scriptableObjectInstallers: []
+  _scriptableObjectInstallers:
+  - {fileID: 11400000, guid: 16ed1666c7ca89d40bc18866f5ec30ec, type: 2}
   _monoInstallers:
   - {fileID: 222166922}
-  _installerPrefabs: []
+  _installerPrefabs:
+  - {fileID: 749548765388178180, guid: 7eadfd4d3e4c48748b1d93e8db25d51e, type: 3}
   _autoRun: 1
   OnPreInstall:
     m_PersistentCalls:
